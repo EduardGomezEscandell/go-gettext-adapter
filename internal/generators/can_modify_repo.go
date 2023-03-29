@@ -8,7 +8,7 @@ package main
 import (
 	"os"
 
-	"example.com/sample/internal/generators"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/generators"
 )
 
 func main() {

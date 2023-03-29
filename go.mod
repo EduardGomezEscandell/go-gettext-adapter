@@ -1,4 +1,4 @@
-module example.com/sample
+module github.com/EduardGomezEscandell/go-gettext-adapter
 
 go 1.20
 

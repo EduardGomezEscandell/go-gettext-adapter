@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"example.com/sample/internal/foo"
-	"example.com/sample/internal/i18n"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/foo"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/i18n"
 )
 
 func main() {

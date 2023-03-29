@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	"example.com/sample/internal/sanitizegettext"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/sanitizegettext"
 )
 
 const usage = `usage:

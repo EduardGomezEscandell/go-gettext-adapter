@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"example.com/sample/internal/generators"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/generators"
 	"github.com/stretchr/testify/require"
 )
 

@@ -15,7 +15,7 @@ import (
 	"strings"
 	"sync"
 
-	"example.com/sample/internal/finitestatemachine"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/finitestatemachine"
 )
 
 func Sanitize(dstRoot string, srcRoot string, i18nPkg string, gettextFunc string) error {

@@ -10,7 +10,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"example.com/sample/internal/generators"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/generators"
 )
 
 func main() {

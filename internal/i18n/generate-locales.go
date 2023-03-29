@@ -15,8 +15,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"example.com/sample/internal/generators"
-	"example.com/sample/internal/sanitizegettext"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/generators"
+	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/sanitizegettext"
 )
 
 const usage = `Usage of %s:
