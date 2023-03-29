@@ -41,7 +41,7 @@ jobs:
           tree generated
 
   analyze-big-project:
-    name: Generate .po and .mo files
+    name: Analyze bigger project
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
