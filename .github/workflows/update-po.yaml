@@ -21,6 +21,9 @@ jobs:
         uses: actions/setup-go@v4
         with:
           go-version-file: go.mod
+      - name: Prepare go dependencies
+        run: |
+          go mod tidy
       - name: Demonstrate usage
         run: |
           go generate internal/i18n/i18n.go
