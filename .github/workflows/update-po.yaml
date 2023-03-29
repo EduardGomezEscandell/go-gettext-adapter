@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Check out repo
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
       - name: "Install dependencies"
         run: |
           sudo DEBIAN_FRONTEND=noninteractive apt update
@@ -37,3 +39,43 @@ jobs:
       - name: Show tree of .mo files
         run: |
           tree generated
+
+  analyze-big-project:
+    name: Generate .po and .mo files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          path: go-gettext-adapter
+          fetch-depth: 1
+      - name: Check out repo
+        uses: actions/checkout@v3
+        with:
+          repository: ubuntu/adsys
+          path: adsys
+          fetch-depth: 1
+      - name: "Install dependencies"
+        run: |
+          sudo DEBIAN_FRONTEND=noninteractive apt update
+          sudo DEBIAN_FRONTEND=noninteractive apt install -y gettext
+      - name: "Set up go"
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: go-gettext-adapter/go.mod
+      - name: Prepare go dependencies
+        run: |
+          cd go-gettext-adapter/
+          go mod tidy
+          cd -
+      - name: Demonstrate usage
+        run: |
+            mkdir /tmp/adsys
+            go run go-gettext-adapter/internal/sanitizegettext/main.go /tmp/adsys adsys "i18n" "G"
+      - name: Show diff
+        run: |
+          echo "::group::Overwritting"
+          cp -rT /tmp/adys adsys
+          echo "::endgroup::"
+
+          git --no-pager diff
