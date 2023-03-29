@@ -9,7 +9,6 @@ import (
 	"go/token"
 	"io"
 	"io/fs"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -54,7 +53,7 @@ func SanitizeTemp(srcRoot string, i18nPkg string, gettextFunc string) (string, e
 
 			if err := machine.Consume(pos, tok, lit); err != nil {
 				line, char := findPos(contents, int(pos))
-				log.Fatalf("%s:%d:%d: %v", path, line, char, err)
+				return fmt.Errorf("%s:%d:%d: %v", path, line, char, err)
 			}
 		}
 
@@ -177,7 +176,7 @@ func mapGoFiles(dstRoot string, srcRoot string, f func(name string, r io.Reader,
 			// Try to return error
 			select {
 			case <-ctx.Done():
-				errch <- ctx.Err()
+				return
 			case errch <- err:
 			}
 		}()

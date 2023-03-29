@@ -31,6 +31,7 @@ func main() {
 	fmt.Println(dst, src, pkg, fun)
 
 	if err := sanitizegettext.Sanitize(dst, src, pkg, fun); err != nil {
-		log.Fatal(err)
+		fmt.Println("\n")
+		log.Fatalf("An error has been detected, aborting:%v", err)
 	}
 }
