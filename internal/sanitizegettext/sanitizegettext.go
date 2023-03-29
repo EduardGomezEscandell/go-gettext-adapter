@@ -71,13 +71,22 @@ func SanitizeTemp(srcRoot string, i18nPkg string, gettextFunc string) (string, e
 			fmt.Printf("%s:%d:%d: %s => %q\n", path, ln, ch, res.Val, replaceWith)
 
 			// Mapping
-			w.Write(contents[i : res.Pos-1])
-			w.Write([]byte(fmt.Sprintf(`%q`, replaceWith)))
+			if _, err := w.Write(contents[i : res.Pos-1]); err != nil {
+				return fmt.Errorf("could not write on tmp copy of %q: %v", path, err)
+			}
+
+			if _, err := fmt.Fprintf(w, `%q`, replaceWith); err != nil {
+				return fmt.Errorf("could not write on tmp copy of %q: %v", path, err)
+			}
+
 			i = res.Pos + len(res.Val) - 1
 		}
-		w.Write(contents[i:])
 
-		return err
+		if _, err := w.Write(contents[i:]); err != nil {
+			return err
+		}
+
+		return nil
 	})
 
 	if err != nil {

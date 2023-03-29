@@ -21,7 +21,7 @@ type i18n struct {
 	loc       string
 
 	gettext.Catalog
-	translations gettext.Translations
+	translations gettext.TextDomain
 }
 
 var (
@@ -77,7 +77,11 @@ func langpackResolver(root string, locale string, domain string) string {
 }
 
 func (l *i18n) bindTextDomain(domain, dir string) {
-	l.translations = gettext.NewTranslations(dir, domain, langpackResolver)
+	l.translations = gettext.TextDomain{
+		Name:         dir,
+		LocaleDir:    domain,
+		PathResolver: langpackResolver,
+	}
 }
 
 // setLocale initializes the locale name and simplify it.
