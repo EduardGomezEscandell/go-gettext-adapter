@@ -59,6 +59,8 @@ jobs:
           go-version-file: go-gettext-adapter/go.mod
       - name: Prepare go dependencies
         run: |
+          set -eu
+
           cd go-gettext-adapter/
           go mod tidy
           cd -
@@ -70,10 +72,16 @@ jobs:
           fetch-depth: 1
       - name: Demonstrate usage
         run: |
+            set -eu
+
             mkdir /tmp/adsys
-            go run go-gettext-adapter/internal/sanitizegettext/main.go /tmp/adsys adsys "i18n" "G"
+            cd go-gettext-adapter
+            go run internal/sanitizegettext/main.go /tmp/adsys ../adsys "i18n" "G"
+            cd -
       - name: Show diff
         run: |
+          set -eu
+
           echo "::group::Overwritting"
           cp -rT /tmp/adys adsys
           echo "::endgroup::"
