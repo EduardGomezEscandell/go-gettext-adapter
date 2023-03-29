@@ -110,7 +110,7 @@ func mapGoFiles(dstRoot string, srcRoot string, f func(name string, r io.Reader,
 	err := filepath.WalkDir(srcRoot, func(src string, d fs.DirEntry, err error) error {
 		select {
 		case <-ctx.Done():
-			return ctx.Err()
+			return nil
 		default:
 		}
 
@@ -149,7 +149,7 @@ func mapGoFiles(dstRoot string, srcRoot string, f func(name string, r io.Reader,
 			// Quick escape
 			select {
 			case <-ctx.Done():
-				errch <- ctx.Err()
+				return
 			default:
 			}
 
@@ -186,6 +186,7 @@ func mapGoFiles(dstRoot string, srcRoot string, f func(name string, r io.Reader,
 
 	go func() {
 		wg.Wait()
+		cancel()
 		close(errch)
 	}()
 
