@@ -1,0 +1,36 @@
+name: Demonstration
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  generate-po-and-mo:
+    name: Generate .po and .mo files
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Install dependencies"
+        run: |
+          sudo DEBIAN_FRONTEND=noninteractive apt update
+          sudo DEBIAN_FRONTEND=noninteractive apt install -y gettext tree
+      - name: "Set up go"
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: go.mod
+      - name: Check out repo
+        uses: actions/checkout@v3
+      - name: Demonstrate usage
+        run: |
+          go generate internal/i18n/i18n.go
+      - name: Output generated files
+        run: |
+          for file in po/* ; do
+            echo "::group::$file"
+            cat $file
+            echo "::endgroup::"
+          done
+      - name: Show tree of .mo files
+        run: |
+          tree generated
