@@ -204,9 +204,9 @@ func findPos(contents []byte, pos int) (line, ch int) {
 	var acc int
 	for i, line := range bytes.Split(contents, []byte("\n")) {
 		if acc+len(line) > pos {
-			return i, pos - acc
+			return i + 1, pos - acc
 		}
-		acc += len(line)
+		acc += len(line) + 1
 	}
 	return 0, 0
 }
