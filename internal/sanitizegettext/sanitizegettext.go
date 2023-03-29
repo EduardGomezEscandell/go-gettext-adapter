@@ -53,7 +53,8 @@ func SanitizeTemp(srcRoot string, i18nPkg string, gettextFunc string) (string, e
 			}
 
 			if err := machine.Consume(pos, tok, lit); err != nil {
-				log.Fatalf("%s:%d: %v", path, pos, err)
+				line, char := findPos(contents, int(pos))
+				log.Fatalf("%s:%d:%d: %v", path, line, char, err)
 			}
 		}
 
