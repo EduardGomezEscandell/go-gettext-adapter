@@ -16,10 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: deleteme/internal/foo/foo.go:6 internal/foo/foo.go:6
+#: internal/foo/foo.go:6
 msgid "Hello, world\\n"
 msgstr "Bonjour le monde!\\n"
 
-#: cmd/sample/main.go:11 deleteme/cmd/sample/main.go:11
+#: cmd/sample/main.go:11
 msgid "Welcome!"
 msgstr "Bienvenu!"
