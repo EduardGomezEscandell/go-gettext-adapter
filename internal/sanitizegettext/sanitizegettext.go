@@ -14,7 +14,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/EduardGomezEscandell/go-gettext-adapter/internal/finitestatemachine"
+	machine "github.com/EduardGomezEscandell/go-gettext-adapter/internal/sanitizegettext/finitestatemachine"
 )
 
 func Sanitize(dstRoot string, srcRoot string, i18nPkg string, gettextFunc string) error {
@@ -44,7 +44,7 @@ func SanitizeTemp(srcRoot string, i18nPkg string, gettextFunc string) (string, e
 		var s scanner.Scanner
 		s.Init(f, contents, nil, scanner.ScanComments)
 
-		machine := finitestatemachine.New(i18nPkg, gettextFunc)
+		machine := machine.New(i18nPkg, gettextFunc)
 		for {
 			pos, tok, lit := s.Scan()
 			if tok == token.EOF {

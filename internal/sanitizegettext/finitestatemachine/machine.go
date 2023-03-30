@@ -1,4 +1,4 @@
-package finitestatemachine
+package sanitizegettext
 
 import (
 	"fmt"
