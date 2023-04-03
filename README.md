@@ -14,7 +14,7 @@ File `internal/foo/foo.go` has such an instance:
 ```go
 return i18n.G(`Hello, world\n`)
 ```
-These cases would silently fail with gettext as it does not understand ```tilde quotes```, so it is ignored. With the help
+These cases would silently fail with gettext as it does not understand `` `backtick quotes` ``, so it is ignored. With the help
 of this module, the string does show up in the `.pot` files, see `po/sample.pot`.
 
 ## No string literals
